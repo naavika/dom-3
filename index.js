@@ -17,4 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
     for (var i = 0; i < fruitElements.length; i++) {
       fruitElements[i].style.fontWeight = "bold";
     }
+  
+    // Change the color of the 5th "li" tag to blue
+    var fifthLi = document.getElementsByTagName("li")[4];
+    if (fifthLi) {
+      fifthLi.style.color = "blue";
+    }
+  
+    // Make all "li" tags italic
+    var allLiTags = document.getElementsByTagName("li");
+    for (var i = 0; i < allLiTags.length; i++) {
+      allLiTags[i].style.fontStyle = "italic";
+    }
   });
+  
