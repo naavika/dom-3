@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body style="margin: 0">
-    <div id="header" style="padding: 1rem 0; background-color: lightblue">
-      <h1 id="main-heading" style="margin: 0">Fruit Shop</h1>
-      <!-- Added sub-heading (h3 tag) -->
-      <h3 style="font-style: italic">Buy high quality organic fruits online</h3>
-    </div>
-    <div>
-      <!-- Added paragraph tag with id "fruits-total" -->
-      <p id="fruits-total">Total fruits: 4</p>
-      <h2 id="basket-heading">Fruits In Basket</h2>
-      <ul class="fruits">
-        <li class="fruit">Banana</li>
-        <li class="fruit">Apple</li>
-        <li class="fruit">Orange</li>
-        <li class="fruit">Kiwi</li>
-      </ul>
-    </div>
-    <div id="thanks"></div>
-  </body>
-  <script src="index.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    form {
+      font-family: Arial;
+      background-color: gray;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 20px;
+      color: blue;
+    }
+
+    input {
+      font-style: italic;
+      margin-bottom: 20px;
+      height: 30px;
+    }
+
+    button {
+      background-color: yellow;
+      width: 225px;
+      border: 1px solid yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <label for="name">
+      Name:
+    </label>
+    <input type="text" id="name">
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
 </html>
