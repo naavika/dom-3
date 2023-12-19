@@ -1,71 +1,57 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Get the elements with the class 'fruit'
-  var fruitElements = document.querySelectorAll(".fruit");
+function handleFormSubmit(event) {
+  event.preventDefault();
 
-  // Make the 3rd element in the list have yellow background color
-  if (fruitElements.length >= 3) {
-    fruitElements[2].style.backgroundColor = "yellow";
-  }
+  // Get user details from the form
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
 
-  // Change the orange background color to yellow using querySelector
-  var headerElement = document.querySelector("#header");
-  if (headerElement) {
-    headerElement.style.backgroundColor = "yellow";
-  }
+  // Create a user object
+  const user = {
+    username,
+    email,
+    phone,
+  };
 
-  // Make all the elements in the list have bold font
-  fruitElements.forEach(function (element) {
-    element.style.fontWeight = "bold";
+  // Get existing users from local storage or initialize an empty array
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Add the new user to the array
+  users.push(user);
+
+  // Update local storage with the updated users array
+  localStorage.setItem("users", JSON.stringify(users));
+
+  // Display users on the page
+  displayUsers(users);
+
+  // Clear the form fields
+  document.getElementById("username").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+}
+
+function displayUsers(users) {
+  // Get the unordered list element
+  const userList = document.getElementById("userList");
+
+  // Clear the existing list items
+  userList.innerHTML = "";
+
+  // Iterate through the users and create list items to display on the page
+  users.forEach((user) => {
+    const listItem = document.createElement("li");
+
+    // Display user details in list item
+    listItem.textContent = `Username: ${user.username}, Email: ${user.email}, Phone: ${user.phone}`;
+
+    // Append the list item to the unordered list
+    userList.appendChild(listItem);
   });
+}
 
-  // Change the color of the 5th "li" tag to blue using querySelector
-  var fifthLi = document.querySelector("li:nth-child(5)");
-  if (fifthLi) {
-    fifthLi.style.color = "blue";
-  }
-
-  // Make all "li" tags italic using querySelectorAll
-  var allLiTags = document.querySelectorAll("li");
-  allLiTags.forEach(function (li) {
-    li.style.fontStyle = "italic";
-  });
-
-  // Use id as query to select the basket heading and set its color to brown
-  var basketHeading = document.querySelector("#basket-heading");
-  if (basketHeading) {
-    basketHeading.style.color = "brown";
-  }
-
-  // Change the background color of even fruit items to red and text color to white
-  fruitElements.forEach(function (element, index) {
-    if (index % 2 === 1) {
-      element.style.backgroundColor = "red";
-      element.style.color = "white";
-    }
-  });
-
-  // 1. Inside the first Div, after the main heading add a sub-heading (h3 tag) "Buy high-quality organic fruits online".
-  var mainHeading = document.querySelector("h1");
-  if (mainHeading) {
-    var subHeading = document.createElement("h3");
-    subHeading.textContent = "Buy high-quality organic fruits online";
-    mainHeading.parentNode.insertBefore(subHeading, mainHeading.nextSibling);
-  }
-
-  // 2. Make the sub-heading text italic.
-  var italicSubHeading = document.querySelector("h3");
-  if (italicSubHeading) {
-    italicSubHeading.style.fontStyle = "italic";
-  }
-
-  // 3. Inside the second Div, before the unordered list add a paragraph tag showing "Total fruits: 4".
-  var secondDiv = document.querySelector("#div2");
-  if (secondDiv) {
-    var totalFruitsParagraph = document.createElement("p");
-    totalFruitsParagraph.textContent = "Total fruits: 4";
-    secondDiv.insertBefore(totalFruitsParagraph, secondDiv.firstChild);
-
-    // Set the id of the paragraph tag to "fruits-total".
-    totalFruitsParagraph.setAttribute("id", "fruits-total");
-  }
+// Load existing users from local storage on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  displayUsers(users);
 });
