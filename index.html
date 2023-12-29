@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body style="margin: 0">
-    <form onsubmit="handleFormSubmit(event)">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" />
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" />
-      <label for="phone">Phone No</label>
-      <input type="tel" name="phone" id="phone" />
-      <button type="submit">Submit</button>
-    </form>
-    <ul id="userList"></ul>
-    <script src="index.js"></script>
-  </body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>">
+</head>
+</style> 
+<body style="background-color: rgb(52, 221, 156);">
+    <center>
+    <div class="container-md">
+        <u><h1>Expense Tracker App</h1></u>
+        <form class="form-check-inline">
+            <label for="expense amount" class="form-label" >Choose Expense Amount</label>
+            <input type="number" class="input-group" id="expenseid" name="expansename" size="5">
+
+            <label for="desciprtion" class="form-label" >Choose Description</label>
+            <input type="test" class="input-group" id="descriptionid" name="descriptionname"><br>
+
+           <label for="items">Choose category</label>
+
+            <select id="choose">
+                <option value="bus">None</option>
+                <option value="car">car</option>
+                <option value="travel">travel</option>
+                <option value="food">food</option>
+            </select><br><br>
+            <button type="submit" id="submitid">Add Expense</button>
+
+            <ul class="liclass" id="liid"></ul>
+        </form>
+    </div>
+</center>
+<script src="expenseTracker.js"></script>
+<script src="https://crudcrud.com/api/6d4110663de2486d8a8691bc5c890b66"></script>
+</body>
 </html>
