@@ -1,39 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>">
-</head>
-</style> 
-<body style="background-color: rgb(52, 221, 156);">
-    <center>
-    <div class="container-md">
-        <u><h1>Expense Tracker App</h1></u>
-        <form class="form-check-inline">
-            <label for="expense amount" class="form-label" >Choose Expense Amount</label>
-            <input type="number" class="input-group" id="expenseid" name="expansename" size="5">
+document.getElementById('submitid').addEventListener('click',funsave)
 
-            <label for="desciprtion" class="form-label" >Choose Description</label>
-            <input type="test" class="input-group" id="descriptionid" name="descriptionname"><br>
+function funsave(event){
+    event.preventDefault();
+    const expenseamount=document.getElementById('expenseid').value;
+    const description=document.getElementById('descriptionid').value;
+    const category=document.getElementById('choose').value;
 
-           <label for="items">Choose category</label>
+    const fulldetails={expenseamount,description,category}
 
-            <select id="choose">
-                <option value="bus">None</option>
-                <option value="car">car</option>
-                <option value="travel">travel</option>
-                <option value="food">food</option>
-            </select><br><br>
-            <button type="submit" id="submitid">Add Expense</button>
+    localStorage.setItem(fulldetails.expenseamount,JSON.stringify(fulldetails))
 
-            <ul class="liclass" id="liid"></ul>
-        </form>
-    </div>
-</center>
-<script src="expenseTracker.js"></script>
-<script src="https://crudcrud.com/api/6d4110663de2486d8a8691bc5c890b66"></script>
-</body>
-</html>
+    showuseronscreen(fulldetails)
+}
+function showuseronscreen(fulldetails){
+    var parelement=document.getElementById('liid')
+    var newli=document.createElement('li');
+    newli.textContent=fulldetails.expenseamount+" "+fulldetails.description+" "+fulldetails.category
+    parelement.appendChild(newli)
+
+
+    //Edit button
+    var editbtn=document.createElement('input');
+    editbtn.type='button';
+    editbtn.value='Edit';
+    newli.appendChild(editbtn)
+    editbtn.onclick= ()=>{
+        localStorage.removeItem(fulldetails.expenseamount)
+        parelement.removeChild(newli)
+
+        document.getElementById('expenseid').value =fulldetails.expenseamount
+        document.getElementById('descriptionid').value = fulldetails.description
+        document.getElementById('choose').value=fulldetails.category
+
+        
+    }
+
+    //delete button
+    var deletebtn=document.createElement('input');
+    deletebtn.type='button';
+    deletebtn.value='Delete';
+    newli.appendChild(deletebtn)
+    deletebtn.onclick= ()=>{
+        localStorage.removeItem(fulldetails.expenseamount)
+        parelement.removeChild(newli)
+    
+}
+}
